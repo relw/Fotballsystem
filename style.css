@@ -1,0 +1,92 @@
+body{
+    background-color:#007193;
+    color:white;
+    font-family: 'Dosis', sans-serif;
+}
+#registreringSkjema{
+    background-color:#046b8a;
+    display: inline-block;
+    width:50%;
+    margin:auto;
+    
+}
+#redigerSkjema{
+    background-color:#046b8a;
+    display: inline-block;
+    width:50%;
+    margin:auto;
+}
+.spillerRegistrering{
+    padding:20px;
+    
+    
+   
+}
+.spillerRedigering{
+    padding:20px;
+   
+}
+.topscorerTekst{
+    font-family: 'Lobster', cursive;
+    font-size:40px;
+}
+.lagTekst{
+    font-family: 'Lobster', cursive;
+    font-size:70px;
+}
+#trofe{
+    height:100px;
+    width:100px;
+}
+#pall{
+    background-color:gold;
+    width:25%;
+    display:inline-block;
+    height:60%;
+    
+    margin-top:5%;
+    text-align:center;
+    padding:20px;
+ 
+    vertical-align:top
+}
+#spillerListe{
+    display:inline-block;
+    margin-left:5%;
+    margin-top:10%;
+    top:0px;
+    width:40%;
+    color:white;
+  
+      
+    vertical-align:top;
+   
+}
+#toppseksjon{
+    margin: 0;
+  padding: 0;
+  text-align:center;
+}
+
+button{
+  background-color: #046b8a;
+  border: none;
+  color: white;
+  padding: 5px 15px;
+  text-align: center;
+  text-decoration: none;
+  
+}
+.btn{
+    background-color: #007193;
+  border: none;
+  color: white;
+  padding: 5px 15px;
+  text-align: center;
+  text-decoration: none;
+  padding:10px;
+  margin:10px;
+}
+#bunnseksjonen{
+    text-align:center;
+}
