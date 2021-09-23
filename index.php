@@ -1,25 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <title>Fotballsystem</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
-  <link rel="stylesheet" href="style.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@500&display=swap" rel="stylesheet">
-</head>
+  <head>
+    <title>Fotballsystem</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@500&display=swap" rel="stylesheet">
+  </head>
 <body>
-<div id="toppseksjon">
-<div id="pall">
-    <p class="topscorerTekst">Topscorer</p>
-    <img id="trofe" src="/bilder/trofe.png">
-    <h4> på laget er</h4><h2 id="toppscorer" class="topscorerTekst"></h2><p><h4>med</h4><h2 id="topscorer-maal"></h2><h2>MÅL!</h2></p>
-    
-</div>
-
-<div id="spillerListe">
-     <p class="lagTekst">Grimstad FK</p>
+  <div id="toppseksjon">
+    <div id="pall">
+      <p class="topscorerTekst">Topscorer</p>
+      <img id="trofe" src="/bilder/trofe.png">
+      <h4> på laget er</h4><h2 id="toppscorer" class="topscorerTekst"></h2><p><h4>med</h4><h2 id="topscorer-maal"></h2><h2>MÅL!</h2></p>  
+    </div>
+    <div id="spillerListe">
+      <p class="lagTekst">Grimstad FK</p>
     <table class="table table-borderless" id="tabell">
         <thead>
             <tr>
@@ -33,17 +31,17 @@
         </thead>
         <tbody></tbody>
     </table>
-</div>
+  </div>
 </div>
 <div id="bunnseksjonen">
-<div id="redigerSkjema">
+  <div id="redigerSkjema">
     <form class="spillerRedigering">
           <h3>Rediger spiller</h3>
           <p></p><input type="text" class="form-control" id="redspillerid" disabled="disabled" placeholder="Spillernavn" >
           <p>Spillernavn</p><input type="text" class="form-control" id="redspillernavn" placeholder="Spillernavn" >
           <p>Alder</p><input type="number" class="form-control" id="redalder" placeholder="Alder" >
           <p>Draktnr</p><input type="number" class="form-control" id="reddraktnr" placeholder="Draktnr" >
-         <p>Antall mål</p> <input type="number" class="form-control" id="redantallMaal" placeholder="Antall mål" >
+          <p>Antall mål</p> <input type="number" class="form-control" id="redantallMaal" placeholder="Antall mål" >
           <button type="button" id="redigerSpillerBtn" class="btn">Rediger spiller</button>
     </form>
 </div> 
@@ -64,7 +62,8 @@ $(document).ready(function(){
      $("#redigerSkjema").hide();
      
      $("#redspillerid").hide();
-   
+  
+      hentAlleSpillere();
     
   $("#registrerSpillerBtn").click(function() {
     
@@ -107,9 +106,7 @@ $(document).ready(function(){
         var alder = $('#alder').val();
         var draktnr = $('#draktnr').val();
         var antallMaal = $('#antallMaal').val();
-        
-        //Datbase
-        
+      
         $.ajax({
             type: "POST",
             url: "https://fotballsystem.000webhostapp.com/db/registrerSpiller.php",
@@ -123,10 +120,10 @@ $(document).ready(function(){
                     });
                     location.reload();
                 }
-    }
-});
-    }
-});
+              }
+        });
+      }
+    });
 
 //Rediger spiller
  $("#redigerSpillerBtn").click(function() {
@@ -172,8 +169,6 @@ $(document).ready(function(){
         var antallMaal = $('#redantallMaal').val();
         var spillerid = $('#redspillerid').val(); 
         
-        //Datbase
-        
         $.ajax({
             type: "POST",
             url: "https://fotballsystem.000webhostapp.com/db/redigerSpiller.php",
@@ -187,13 +182,10 @@ $(document).ready(function(){
                     });
                     location.reload();
                 }
-    }
-});
-    }
-});
-
-//Liste ut alle spillere hentAlleSpillere.php
-hentAlleSpillere();
+            }
+        });
+      }
+  });
 
 function tomSpillerTabell(){
     $('#spillerListe tbody').remove();
@@ -205,20 +197,17 @@ function hentAlleSpillere(){
             dataType:"json",
             success: function(data){
                 console.log(data);
-               // $('#spillerListe tr:last').after('<tr>...</tr><tr>...</tr>');
                 var arrayLengde = data.length;
                     for (var i = 0; i < arrayLengde; i++) {
                     console.log(data[i].spillernavn);
                     $('#spillerListe tbody').append("<tr><td>"+data[i].spillernavn+"</td><td>"+data[i].alder+"</td><td>"+data[i].draktnr+"</td><td>"+data[i].antallMaal+"</td><td><button class='redigerSpiller' value="+data[i].id+">Rediger</button></td><td><button class='slettSpiller' value="+data[i].id+">Slett</button></td></tr>");
-                //Do something
-}
-//Setter topscorer
- $('#toppscorer').html(data[0].spillernavn);
- $('#topscorer-maal').html(data[0].antallMaal);
- 
+                    }
+            //Setter topscorer
+             $('#toppscorer').html(data[0].spillernavn);
+             $('#topscorer-maal').html(data[0].antallMaal);
+          }
+        });
     }
-});
-}
     $("#tabell").on('click', '.redigerSpiller', function () {
     var spillerid = $(this).val();
         hentSpillerInfo(spillerid);
@@ -243,14 +232,13 @@ function hentSpillerInfo(spillerid){
             success: function(data){
                 console.log(data);
                 $('#redspillerid').val(data[0].id);
-                 $('#redspillernavn').val(data[0].spillernavn);
-                  $('#redalder').val(data[0].alder);
-                   $('#reddraktnr').val(data[0].draktnr);
-                    $('#redantallMaal').val(data[0].antallMaal);
-                
+                $('#redspillernavn').val(data[0].spillernavn);
+                $('#redalder').val(data[0].alder);
+                $('#reddraktnr').val(data[0].draktnr);
+                $('#redantallMaal').val(data[0].antallMaal);       
+             }
+        });
     }
-});
-}
  function slettspiller(spillerid){
     $.ajax({
             type: "POST",
@@ -264,14 +252,11 @@ function hentSpillerInfo(spillerid){
                       icon: "success",
                     });
                     location.reload();
-                }
-                
-    }
+                }        
+            }
+      });
+  }
 });
-}
-});
-
 </script>
-
 </body>
 </html>
