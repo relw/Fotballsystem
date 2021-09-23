@@ -10,18 +10,18 @@
     $password = "Klregj24jgfr3-";
     $dbname = "id17642902_fotballsystem";
 
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-// Check connection
-if ($conn->connect_error) {
-  die("Connection failed: " . $conn->connect_error);
-}
+    // Koble til
+    $conn = new mysqli($servername, $username, $password, $dbname);
+    // Sjekke tilkobling
+    if ($conn->connect_error) {
+      die("Connection failed: " . $conn->connect_error);
+    }
 
-$sql = "UPDATE Spillere SET spillernavn = '$spillernavn', alder= '$alder', draktnr='$draktnr', antallMaal='$antallMaal' WHERE id = '$spillerid'";
+    $sql = "UPDATE Spillere SET spillernavn = '$spillernavn', alder= '$alder', draktnr='$draktnr', antallMaal='$antallMaal' WHERE id = '$spillerid'";
 
 
-if ($conn->query($sql) === TRUE) {
-  echo json_encode("ok");;
-}
+    if ($conn->query($sql) === TRUE) {
+      echo json_encode("ok");;
+    }
 
 ?>
