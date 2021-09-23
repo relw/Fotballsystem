@@ -58,13 +58,14 @@
 </div>
 <script>
 $(document).ready(function(){
-
+     //Skjuler rediger-skjemaet
      $("#redigerSkjema").hide();
-     
+     //Skjuler spiller id i rediger skjema
      $("#redspillerid").hide();
-  
-      hentAlleSpillere();
+     //Henter alle spillere til tabell
+     hentAlleSpillere();
     
+  //Registrere ny spiller skjema
   $("#registrerSpillerBtn").click(function() {
     
     var godkjent=0;
@@ -125,7 +126,7 @@ $(document).ready(function(){
       }
     });
 
-//Rediger spiller
+//Redigere spiller
  $("#redigerSpillerBtn").click(function() {
     
     var godkjent=0;
@@ -186,10 +187,11 @@ $(document).ready(function(){
         });
       }
   });
-
+//Tømme tabell
 function tomSpillerTabell(){
     $('#spillerListe tbody').remove();
 };
+//Hente alle spillere til tabell
 function hentAlleSpillere(){
     $.ajax({
             type: "POST",
@@ -208,7 +210,8 @@ function hentAlleSpillere(){
           }
         });
     }
-    $("#tabell").on('click', '.redigerSpiller', function () {
+ //Trykker rediger spiller
+ $("#tabell").on('click', '.redigerSpiller', function () {
     var spillerid = $(this).val();
         hentSpillerInfo(spillerid);
          $("#redigerSkjema").show();
@@ -217,12 +220,13 @@ function hentAlleSpillere(){
     }, 100);
        
 });
-
+//Trykker slett spiller
 $("#tabell").on('click', '.slettSpiller', function () {
     var spillerid = $(this).val();
         slettspiller(spillerid);
         
 });
+//Henter spiller info etter å ha trykket rediger
 function hentSpillerInfo(spillerid){
      $.ajax({
             type: "POST",
@@ -239,6 +243,7 @@ function hentSpillerInfo(spillerid){
              }
         });
     }
+ //Sletter spiller
  function slettspiller(spillerid){
     $.ajax({
             type: "POST",
